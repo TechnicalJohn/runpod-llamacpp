@@ -38,8 +38,8 @@ fi
 
 # check if $LLAMA_SERVER_CMD_ARGS is set
 if [ -z "$LLAMA_SERVER_CMD_ARGS" ]; then
-    echo "start.sh: Warning: LLAMA_SERVER_CMD_ARGS is not set. Defaulting to -hf unsloth/gemma-3-270m-it-GGUF:IQ2_XXS --ctx-size 512 -ngl 999"
-    LLAMA_SERVER_CMD_ARGS="-hf google/gemma-4-E2B-it --ctx-size 512 -ngl 999"
+    echo "start.sh: Warning: LLAMA_SERVER_CMD_ARGS is not set. Defaulting to -hf ggml-org/gemma-4-E2B-it-GGUF:Q4_0"
+    LLAMA_SERVER_CMD_ARGS="-hf ggml-org/gemma-4-E2B-it-GGUF:Q4_0"
 fi
 
 # check if the substring --port is in LLAMA_SERVER_CMD_ARGS and if yes, raise an error:
@@ -74,14 +74,15 @@ LLAMA_SERVER_PID=$! # store the process ID (PID) of the background command
 tries_so_far=0
 
 check_server_is_running() {
-    echo "Checking if llama-server is running..."
-    if curl -s -f http://localhost:3098/v1/ > /dev/null; then
+    tries_so_far=$((tries_so_far + 1))
+
+
+    echo "Checking if llama-server is running..." $tries_so_far
+    if curl -s -f http://localhost:3098/health > /dev/null; then
         return 0 # Success
     else
         return 1 # Failure
     fi
-
-    tries_so_far=$((tries_so_far + 1))
 
 }
 
@@ -90,7 +91,7 @@ echo "start.sh: Waiting for llama-server to start..."
 # Wait for the server to start
 while ! check_server_is_running; do
     sleep 1
-    if [ $tries_so_far -ge 15 ]; then
+    if [ $tries_so_far -ge 30 ]; then
         echo "*ERROR* llama-server did not start!"
         exit 1
     fi
