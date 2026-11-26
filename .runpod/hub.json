@@ -17,7 +17,7 @@
                     "name": "Command line arguments for llama-server",
                     "type": "string",
                     "description": "Launch command line arguments (argv) for the llama-server binary. Do not define the port. If using caching, do not define -hf or -m here.",
-                    "default": "-hf unsloth/gemma-3-270m-it-GGUF:Q6_K --ctx-size 4096 -ngl 999",
+                    "default": "-hf ggml-org/gemma-4-26B-A4B-it-GGUF:Q8_0 --ctx-size 4096 -ngl 999",
                     "advanced": false
                 }
             },

@@ -38,8 +38,8 @@ fi
 
 # check if $LLAMA_SERVER_CMD_ARGS is set
 if [ -z "$LLAMA_SERVER_CMD_ARGS" ]; then
-    echo "start.sh: Warning: LLAMA_SERVER_CMD_ARGS is not set. Defaulting to -hf unsloth/gemma-3-270m-it-GGUF:IQ2_XXS --ctx-size 512 -ngl 999"
-    LLAMA_SERVER_CMD_ARGS="-hf unsloth/gemma-3-270m-it-GGUF:IQ2_XXS --ctx-size 512 -ngl 999"
+    echo "start.sh: Warning: LLAMA_SERVER_CMD_ARGS is not set. Defaulting to -hf ggml-org/gemma-4-26B-A4B-it-GGUF:Q8_0 --ctx-size 4096 -ngl 999"
+    LLAMA_SERVER_CMD_ARGS="-hf ggml-org/gemma-4-26B-A4B-it-GGUF:Q8_0 --ctx-size 4096 -ngl 999"
 fi
 
 # check if the substring --port is in LLAMA_SERVER_CMD_ARGS and if yes, raise an error:
