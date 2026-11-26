@@ -17,7 +17,7 @@
                     "name": "Command line arguments for llama-server",
                     "type": "string",
                     "description": "Launch command line arguments (argv) for the llama-server binary. Do not define the port. If using caching, do not define -hf or -m here.",
-                    "default": "-hf ggml-org/gemma-4-26B-A4B-it-GGUF:Q8_0 --ctx-size 4096 -ngl 999",
+                    "default": "-hf ggml-org/gemma-4-26B-A4B-it-GGUF:Q8_0",
                     "advanced": false
                 }
             },
@@ -27,7 +27,7 @@
                     "name": "Hugging Face Hub model name for cached model",
                     "type": "string",
                     "description": "Hugging Face Hub model name to use for the cached GGUF model. Leave empty to disable caching. Example: user/model-name",
-                    "default": "",
+                    "default": "ggml-org/gemma-4-26B-A4B-it-GGUF:Q8_0",
                     "advanced": true
                 }
             },
