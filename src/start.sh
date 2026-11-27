@@ -104,7 +104,7 @@ tries_so_far=0
 
 check_server_is_running() {
     echo "start.sh: Checking if llama-server is done initializing..."
-    status=$(curl -sSf http://localhost:3098/health 2>/dev/null))
+    status=$((curl -sSf http://localhost:3098/health 2>/dev/null))
 
     if [[ $(status | jq -r '.status') == "ok" ]]; then
         return 1 # success
