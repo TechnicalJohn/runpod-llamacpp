@@ -18,6 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update --yes --quiet \
         bash \
         curl \
         git \
+        jq \
         python3-setuptools \
         python3-pip \
     && apt-get clean \
