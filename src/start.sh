@@ -104,12 +104,12 @@ tries_so_far=0
 
 check_server_is_running() {
     echo "start.sh: Checking if llama-server is done initializing..."
-    status=$((curl -sSf http://localhost:3098/health 2>/dev/null))
+    lcpp_status=$(curl -sSf http://localhost:3098/health 2>/dev/null | jq -r '.status')
 
-    if [[ $(status | jq -r '.status') == "ok" ]]; then
-        return 1 # success
+    if [[ $lcpp_status == "ok" ]]; then
+        return 0 # stop waiting
     else
-        return 0 # failure
+        return 1 # keep waiting
     fi
 
     tries_so_far=$((tries_so_far + 1))
